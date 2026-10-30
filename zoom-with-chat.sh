@@ -8,7 +8,7 @@ launcher_pid=$!
 exec 9>"${XDG_RUNTIME_DIR:?}/zoom-chat-watch.lock"
 
 if flock -n 9; then
-    systemctl --user start hyprlife-zoom-chat.service
+    systemctl --user start zoom-hyprland-chat.service
 
     idle=0
     while (( idle < 3 )); do
@@ -22,7 +22,7 @@ if flock -n 9; then
         sleep 2
     done
 
-    systemctl --user stop hyprlife-zoom-chat.service
+    systemctl --user stop zoom-hyprland-chat.service
 fi
 
 wait "$launcher_pid"

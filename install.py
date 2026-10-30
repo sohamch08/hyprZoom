@@ -4,19 +4,19 @@ import os
 import shutil
 
 repo = os.path.dirname(os.path.realpath(__file__))
-config = os.path.expanduser("~/.config")
 
 files = {
-    "zoomrules.lua": "hypr/modules/zoomrules.lua",
-    "scripts/zoom-chat-popup.py": "hypr/scripts/zoom-chat-popup.py",
-    "scripts/zoom-sharing-input.py": "hypr/scripts/zoom-sharing-input.py",
-    "scripts/zoom-chat-notifications.py": "hypr/scripts/zoom-chat-notifications.py",
-    "scripts/zoom_chat_accessibility.py": "hypr/scripts/zoom_chat_accessibility.py",
-    "zoom-hyprland-chat.service": "systemd/user/zoom-hyprland-chat.service",
+    "zoomrules.lua": "~/.config/hypr/modules/zoomrules.lua",
+    "scripts/zoom-chat-popup.py": "~/.config/hypr/scripts/zoom-chat-popup.py",
+    "scripts/zoom-sharing-input.py": "~/.config/hypr/scripts/zoom-sharing-input.py",
+    "scripts/zoom-chat-notifications.py": "~/.config/hypr/scripts/zoom-chat-notifications.py",
+    "scripts/zoom_chat_accessibility.py": "~/.config/hypr/scripts/zoom_chat_accessibility.py",
+    "zoom-hyprland-chat.service": "~/.config/systemd/user/zoom-hyprland-chat.service",
+    "zoom-with-chat.sh": "~/.local/bin",
 }
 
 for source, destination in files.items():
-    target = os.path.join(config, destination)
+    target = os.path.join(destination)
     if os.path.lexists(target):
         print(f"Keeping existing file: {target}")
         continue
@@ -28,6 +28,9 @@ for source, destination in files.items():
 print("""
 Add this once to ~/.config/hypr/hyprland.lua
 (skip it if your configuration already loads the module):
+
+require("modules.zoomrules")
+
 Then run:
 hyprctl reload
 systemctl --user daemon-reload

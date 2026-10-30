@@ -53,7 +53,7 @@ systemctl --user daemon-reload
 systemctl --user enable --now zoom-hyprland-chat.service
 ```
 
-- Check `zoom-hyprland-chat` service status
+- Check `zoom-hyprland-chat.sh` service status
 
 ```sh
 systemctl --user status zoom-hyprland-chat.service

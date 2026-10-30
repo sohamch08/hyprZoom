@@ -66,7 +66,7 @@ wrapper to `~/.local/bin/zoom-with-chat`, and the desktop entry to
 Existing destination files are moved to `.bak`, `.bak.1`, and so on before
 replacement, so rerunning the installer also updates older installations.
 
-[`us.Zoom.desktop`](./us.Zoom.desktop) is a template: the installer replaces
+[`us.zoom.zoom.desktop`](./us.zoom.zoom.desktop) is a template: the installer replaces
 `$HOME` with your absolute home path. Do not copy the template directly into
 your applications directory.
 

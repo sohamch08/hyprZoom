@@ -13,7 +13,7 @@ files = {
     "scripts/zoom_chat_accessibility.py": "~/.config/hypr/scripts/zoom_chat_accessibility.py",
     "zoom-hyprland-chat.service": "~/.config/systemd/user/zoom-hyprland-chat.service",
     "zoom-with-chat.sh": "~/.local/bin/zoom-with-chat",
-    "us.Zoom.desktop": "~/.local/share/applications/us.zoom.Zoom.desktop",
+    "us.zoom.zoom.desktop": "~/.local/share/applications/us.zoom.Zoom.desktop",
 }
 
 for source, destination in files.items():
@@ -28,7 +28,7 @@ for source, destination in files.items():
         print(f"Backed up: {target} -> {backup}")
 
     os.makedirs(os.path.dirname(target), exist_ok=True)
-    if source == "us.Zoom.desktop":
+    if source == "us.zoom.zoom.desktop":
         with open(os.path.join(repo, source), encoding="utf-8") as file:
             desktop = file.read().replace("$HOME", os.path.expanduser("~"))
         with open(target, "w", encoding="utf-8") as file:

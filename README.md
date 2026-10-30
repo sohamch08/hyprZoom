@@ -16,8 +16,45 @@ The fixes handle the clipped audio/video prejoin window, incorrectly tiled auxil
 
 ## Behaviour
 
-- [`zoomrules.lua`](/home/soham/projects/hyprZoom/zoomrules.lua) controls tiling, floating, appearance, dialog sizing, and popup placement.
-- [`zoom-chat-popup.py`](/home/soham/projects/hyprZoom/scripts/zoom-chat-popup.py) identifies chat bubbles so Lua can keep them with their meeting without stealing focus.
-- [`zoom-chat-notifications.py`](/home/soham/projects/hyprZoom/scripts/zoom-chat-notifications.py) uses accessibility events to send desktop notifications containing the sender and message.
-- [`zoom-sharing-input.py`](/home/soham/projects/hyprZoom/scripts/zoom-sharing-input.py) repairs the sharing controls’ X11 window type so clicks work.
-- [`zoom-hyprland-chat.service`](/home/soham/projects/hyprZoom/zoom-hyprland-chat.service) starts the notification listener with your session and restarts it after failures.
+- [`zoomrules.lua`](./zoomrules.lua) identifies chat bubbles so Lua can keep them with their meeting without stealing focus.
+- [`zoom-chat-notifications.py`](./zoom-chat-notifications.py) uses accessibility events to send desktop notifications containing the sender and message.
+- [`zoom-sharing-input.py`](./zoom-sharing-input.py) repairs the sharing controls’ X11 window type so clicks work.
+- [`zoom-hyprland-chat.service`](./zoom-hyprland-chat.service) starts the notification listener with your session and restarts it after failures.
+
+## Installation
+
+- Install Zoom from flatpak: Run
+
+```sh
+flatpak install --user flathub us.zoom.Zoom
+```
+
+Then, inside `~/.var/app/us.zoom.Zoom/config/zoomus.conf` ensure `xwayland=true` option is enabled
+
+- Clone the repo:
+
+```sh
+git clone https://github.com/sohamch08/hyprZoom.git
+cd hyprZoom
+python install.py
+```
+
+- Hyprland config change: Add this in your hyprland config
+
+```lua
+require("modules.zoomrules")
+```
+
+- Reload Hyprland and systemctl
+
+```sh
+hyprctl reload
+systemctl --user daemon-reload
+systemctl --user enable --now zoom-hyprland-chat.service
+```
+
+- Check `zoom-hyprland-chat` service status
+
+```sh
+systemctl --user status zoom-hyprland-chat.service
+```
